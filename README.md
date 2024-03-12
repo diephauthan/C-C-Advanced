@@ -1,6 +1,5 @@
 # Advanced C/C++
-**Lesson: Memory Layout**
-
+## **Lesson: Memory Layout**
 Memory layout của một chương trình C bao gồm 5 phần:
 
 Text segment  (i.e. instructions)
@@ -121,6 +120,11 @@ Hình ảnh này giúp minh họa cách mà stack quản lý việc gọi và tr
 - Saved Previus Frame Pointer trỏ vào vị trí đầu tiên của function foo() tức là kết thúc của function main()
 - Local Variable là các biến local của function
 Lưu ý: Nếu chúng ta sử dụng hết vùng nhớ của Stack thì sẽ có một lỗi rất kinh điển đó là Stack OverFlow xảy ra.
+
+## **Lesson: Storage Classes Extern - Static - Volatile - Register**
+
+
+
 
 
 
