@@ -122,6 +122,37 @@ Hình ảnh này giúp minh họa cách mà stack quản lý việc gọi và tr
 Lưu ý: Nếu chúng ta sử dụng hết vùng nhớ của Stack thì sẽ có một lỗi rất kinh điển đó là Stack OverFlow xảy ra.
 
 ## **Lesson: Storage Classes Extern - Static - Volatile - Register**
+**Extern:** Mục đích của `extern` là để báo cho trình biên dịch biết rằng biến hoặc hàm đó sẽ được định nghĩa ở một nơi khác trong chương trình hoặc trong các file nguồn khác. Điều này cho phép các file nguồn khác nhau trong cùng một chương trình chia sẻ và sử dụng các biến và hàm mà không cần phải định nghĩa lại chúng.
+- Ví dụ
+
+File_1
+```c
+#include<stdio.h>
+
+int counter = 0; // Khai báo và khởi tạo biến
+
+void incrementCounter() {
+    counter++; // Hàm tăng giá trị của biến
+    printf("Counter in file1.c: %d\n", counter);
+}
+```
+File_2
+```c
+#include<stdio.h>
+
+extern int counter; // Sử dụng extern để khai báo biến từ file khác
+extern void incrementCounter(); // Khai báo hàm từ file khác
+
+int main() {
+    printf("Counter in file2.c before increment: %d\n", counter);
+    incrementCounter(); // Gọi hàm tăng giá trị của biến
+    printf("Counter in file2.c after increment: %d\n", counter);
+    return 0;
+}
+```
+File_1 chứa định nghĩa và khởi tạo của biến `counter`, định nghĩa hàm `incrementCounter()` để tăng giá trị của biến.
+File_2 sử dụng `extern` để khai báo biến `counter` và hàm `incrementCounter()` mà không cần khởi tạo hoặc định nghĩa lại chúng. Điều này cho phép File_2 truy cập và sử dụng biến và hàm được định nghĩa trong File_1.
+Khi chương trình được biên dịch và chạy, hàm `main()` trong File_2 sẽ hiển thị giá trị của `counter` trước và sau khi gọi hàm `incrementCounter()`, thể hiện rằng biến `counter` được chia sẻ giữa hai file.
 
 
 
