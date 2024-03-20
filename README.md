@@ -154,8 +154,81 @@ File_1 chứa định nghĩa và khởi tạo của biến `counter`, định ng
 File_2 sử dụng `extern` để khai báo biến `counter` và hàm `incrementCounter()` mà không cần khởi tạo hoặc định nghĩa lại chúng. Điều này cho phép File_2 truy cập và sử dụng biến và hàm được định nghĩa trong File_1.
 Khi chương trình được biên dịch và chạy, hàm `main()` trong File_2 sẽ hiển thị giá trị của `counter` trước và sau khi gọi hàm `incrementCounter()`, thể hiện rằng biến `counter` được chia sẻ giữa hai file.
 
+**Static:**
 
+- Phạm Vi Truy Cập (Scope)
+Biến Cục Bộ: Chỉ có thể truy cập được trong block hoặc hàm mà nó được khai báo. Nó không thể được truy cập bởi các hàm hoặc block khác.
+Biến Toàn Cục: Có thể được truy cập từ bất kỳ đâu trong chương trình, bao gồm tất cả các hàm và block.
+- Tuổi Thọ (Lifetime)
+Biến Cục Bộ: Biến cục bộ sẽ được tạo mới và mất đi sau khi hàm kết thúc.
+Biến Toàn Cục: Biến toàn cục tồn tại suốt vòng đời của chương trình.
+- Vị Trí Lưu Trữ (Storage Location)
+Biến Cục Bộ: Thường được lưu trữ trên stack, điều này giúp việc tạo mới và thu hồi bộ nhớ diễn ra nhanh chóng.
+Biến Toàn Cục: Được lưu trữ trong một phần vùng nhớ cố định (Data or BSS), nên giá trị của chúng được giữ nguyên trong suốt thời gian thực thi của chương trình.
+- Khởi Tạo Mặc Định
+Biến Cục Bộ: Không được tự động khởi tạo với một giá trị mặc định; giá trị của chúng là không xác định nếu không được khởi tạo rõ ràng.
+Biến Toàn Cục: Được tự động khởi tạo với giá trị mặc định (ví dụ, 0 cho kiểu số nguyên, NULL cho con trỏ) nếu không có giá trị khởi tạo được cung cấp.
 
+- Ví dụ
+```c
+#include <stdio.h>
 
+int globalVar = 10; // Biến toàn cục
+
+void demoFunction() {
+    int localVar = 5; // Biến cục bộ
+    printf("Local Var: %d, Global Var: %d\n", localVar, globalVar);
+    localVar++;
+    globalVar++;
+}
+
+int main() {
+    demoFunction(); // Local Var: 5, Global Var: 10
+    demoFunction(); // Local Var: 5, Global Var: 11
+    printf("Final Global Var: %d\n", globalVar); // Final Global Var: 12
+    return 0;
+}
+```
+```c
+Local Var: 5, Global Var: 10
+Local Var: 5, Global Var: 11
+Final Global Var: 12
+```
+- Satic local variables: khi khai báo local variable với static `static int a` thì biến a nằm ở phân vùng BSS or Data tùy thuộc vào giá trị khai báo và biến a sẽ được thu hồi khi kết thúc chương trình, nếu khai báo ở dang `int a` thì biến a sẽ nằm ở phân vùng stack và sẽ được thu hồi khi kết thúc hàm.
+- Ví dụ:
+```c
+#include <stdio.h>
+
+// Biến toàn cục
+int globalVar = 10;
+
+void demoFunction() {
+    // Biến cục bộ static
+    static int staticVar = 0;
+    staticVar++;
+    printf("Static Var: %d, Global Var: %d\n", staticVar, globalVar);
+}
+
+int main() {
+    printf("Global Var at start: %d\n", globalVar);
+    demoFunction(); // In ra: Static Var: 1, Global Var: 10
+    demoFunction(); // In ra: Static Var: 2, Global Var: 10
+    // Thay đổi giá trị của biến toàn cục
+    globalVar = 20;
+    demoFunction(); // In ra: Static Var: 3, Global Var: 20
+    printf("Global Var at end: %d\n", globalVar);
+    return 0;
+}
+```
+```c
+Global Var at start: 10
+Static Var: 1, Global Var: 10
+Static Var: 2, Global Var: 10
+Static Var: 3, Global Var: 20
+Global Var at end: 20
+```
+
+- Static global variables:
+Khi biến toàn cục được khai báo với từ khóa static thì chỉ có thể truy cập trong tệp nguồn (source file) mà nó được khai báo. Điều này giúp giới hạn phạm vi truy cập của biến, ngăn chặn các tệp nguồn khác từ việc trực tiếp truy cập hoặc thay đổi giá trị của nó. Đây là một phương tiện để ẩn thông tin và giảm sự phụ thuộc giữa các phần khác nhau của chương trình. Do được khai báo với static, giá trị của biến sẽ được khởi tạo một lần duy nhất và giữ nguyên giá trị giữa các lần gọi hàm hoặc thậm chí giữa các lần chạy chương trình khác nhau, nếu biến được khởi tạo với một giá trị cụ thể trong mã. Các biến toàn cục static được khởi tạo tự động với giá trị mặc định là 0 (đối với các kiểu số), NULL (đối với con trỏ), hoặc {0} (đối với các kiểu dữ liệu tổng hợp như mảng hoặc struct). Cũng có thể khởi tạo chúng một cách rõ ràng với giá trị khác khi khai báo. 
 
 
