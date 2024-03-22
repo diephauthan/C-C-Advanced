@@ -232,3 +232,33 @@ Global Var at end: 20
 Khi biến toàn cục được khai báo với từ khóa static thì chỉ có thể truy cập trong tệp nguồn (source file) mà nó được khai báo. Điều này giúp giới hạn phạm vi truy cập của biến, ngăn chặn các tệp nguồn khác từ việc trực tiếp truy cập hoặc thay đổi giá trị của nó. Đây là một phương tiện để ẩn thông tin và giảm sự phụ thuộc giữa các phần khác nhau của chương trình. Do được khai báo với static, giá trị của biến sẽ được khởi tạo một lần duy nhất và giữ nguyên giá trị giữa các lần gọi hàm hoặc thậm chí giữa các lần chạy chương trình khác nhau, nếu biến được khởi tạo với một giá trị cụ thể trong mã. Các biến toàn cục static được khởi tạo tự động với giá trị mặc định là 0 (đối với các kiểu số), NULL (đối với con trỏ), hoặc {0} (đối với các kiểu dữ liệu tổng hợp như mảng hoặc struct). Cũng có thể khởi tạo chúng một cách rõ ràng với giá trị khác khi khai báo. 
 
 
+## **Lesson: Linked list**
+
+Linked list bao gồm một chuỗi các "nút" (nodes), mỗi nút chứa một giá trị dữ liệu và một con trỏ (pointer) đến nút tiếp theo trong chuỗi.
+
+<img src="https://images.viblo.asia/e531ddbd-d7e8-433a-8b89-84ad477e22d5.png">
+
+```c
+typedef struct node{
+    int value;
+    struct node *next;
+}node;
+
+```
+`value`: đây là giá trị của node.
+
+`struct node *next;`: Một con trỏ trỏ đến một struct node khác, cho phép liên kết các node với nhau thành một chuỗi hoặc danh sách.
+
+- Khởi tạo các node dựa trên cấp phát tĩnh trên stack:
+```c
+node node1, node2, node3;
+node1.value = 1;
+node2.value = 2;
+node3.value = 3;
+
+node1.next = &node2; // Node 1 trỏ tới Node 2
+node2.next = &node3; // Node 2 trỏ tới Node 3
+node3.next = NULL;   // Node 3 là node cuối, nên nó trỏ tới NULL
+```
+- Khởi tạo các node dùng cấp phát động trên heap:
+
