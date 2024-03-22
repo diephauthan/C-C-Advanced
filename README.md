@@ -261,4 +261,14 @@ node2.next = &node3; // Node 2 trỏ tới Node 3
 node3.next = NULL;   // Node 3 là node cuối, nên nó trỏ tới NULL
 ```
 - Khởi tạo các node dùng cấp phát động trên heap:
+```c
+node *createnode(int value){
+    node *newnode = (node*)malloc(sizeof(node)); //cấp phát bộ nhớ cho node mới
+    newnode->value = value; //gán giá trị
+    newnode->next = NULL; //gán giá trị
+
+    return newnode; //trả về con trỏ trỏ đến node mới
+}
+```
+
 
