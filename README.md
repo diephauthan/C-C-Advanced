@@ -272,7 +272,7 @@ node *createnode(int value){
 ```
 
 ## **Lesson: Stack - Queue**
-
+Stack là một data structure giúp lưu trữ, quản lý dữ liệu theo cơ chế LIFO (Last In, First Out). Stack cho phép hai thao tác cơ bản: **push (đẩy một phần tử vào ngăn xếp)** và **pop (lấy một phần tử ra khỏi ngăn xếp)**. Ngoài ra, thường còn có các thao tác khác như **peek (xem giá trị phần tử đầu ngăn xếp mà không loại bỏ nó)** và **isEmpty (kiểm tra xem ngăn xếp có trống không)**.
 <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/stack_representation.jpg">
 
 
