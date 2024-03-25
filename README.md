@@ -271,4 +271,9 @@ node *createnode(int value){
 }
 ```
 
+## **Lesson: Stack - Queue**
+
+<img src="https://www.tutorialspoint.com/data_structures_algorithms/images/stack_representation.jpg">
+
+
 
