@@ -272,7 +272,7 @@ node *createnode(int value){
 ```
 
 ## **Lesson: Stack - Queue**
-Stack là một data structure giúp lưu trữ, quản lý dữ liệu theo cơ chế LIFO (Last In, First Out). Stack cho phép hai thao tác cơ bản: **push (đẩy một phần tử vào ngăn xếp)** và **pop (lấy một phần tử ra khỏi ngăn xếp)**. Ngoài ra, thường còn có các thao tác khác như **peek (xem giá trị phần tử đầu ngăn xếp mà không loại bỏ nó)** và **isEmpty (kiểm tra xem ngăn xếp có trống không)**.
+**Stack:** là một data structure giúp lưu trữ, quản lý dữ liệu theo cơ chế LIFO (Last In, First Out). Stack cho phép hai thao tác cơ bản: **push (đẩy một phần tử vào ngăn xếp)** và **pop (lấy một phần tử ra khỏi ngăn xếp)**. Ngoài ra, thường còn có các thao tác khác như **peek (xem giá trị phần tử đầu ngăn xếp mà không loại bỏ nó)** và **isEmpty (kiểm tra xem ngăn xếp có trống không)**.
 <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/stack_representation.jpg">
 - Ví dụ:
 ```c
@@ -362,6 +362,119 @@ pop element: 20
 pop element: 10
 stack is empty
 top element: -1
+```
+
+**Queue:**
+```c
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct Queue{
+    int *items; //khai báo con trỏ để sau đó cấp phát bộ nhớ => items sẽ thành mảng
+    int size; 
+    int front, rear;
+}Queue;
+
+void initialize(Queue *queue, int size){
+    queue->items = malloc(sizeof(int) * size);
+    queue->front = -1;
+    queue->rear = -1;
+    queue->size = size;
+}
+
+int is_empty(Queue queue){
+    return queue.front == -1;
+}
+
+int is_full(Queue queue){
+    return (queue.rear + 1) % queue.size == queue.front; 
+    /*
+        rear đang là (4+1) % size là 5 sẽ = 1, dư 0
+        => 0 == 0 nghĩa là queue đã  full
+    */
+}
+
+void enqueue(Queue *queue, int value){
+    if(!is_full(*queue)){
+        if(is_empty(*queue)){
+            queue->front = queue->rear = 0; //front và rear sẽ bằng 0 nếu queue đang rỗng
+        }else{
+            queue->rear = (queue->rear +1) % queue->size;
+            /*
+                (0+1)/5 = 0, dư 1 => rear = 1 vì lấy phần dư (%)
+                (1+1)/5 =0, dư 2 => rear = 2
+                (2+1)/5 =0, dư 3 => rear = 3
+                (3+1)/5 =0, dư 4 => rear = 4
+
+
+            */
+        }
+        queue->items[queue->rear] = value;
+        /*
+            items[0] = 3;
+            items[1] = 4;
+            items[2] = 5;
+            items[3] = 6;
+            items[4] = 7;
+        */
+    }else{
+        printf("queue overflow\n");
+    }
+}
+
+int dequeue(Queue *queue){
+    if (!is_empty(*queue))
+    {
+        int dequeued_value = queue->items[queue->front];
+        if(queue->front == queue->rear){
+            queue->front = queue->rear = -1;
+        }else{
+            queue->front =(queue->front +1)%queue->size;
+            /*
+                (0+1) % 5 = 0, dư 1 => front = 1;
+                (1+1) % 5 = 0, dư 2 => front = 2;
+                (2+1) % 5 = 0, dư 3 => front = 3;
+                (3+1) % 5 = 0, dư 4 => front = 4;
+                nếu tiếp tục dequeue thì nó sẽ vào câu lệnh queue->front = queue->rear = -1; vì front == rear
+            */
+        }
+        return dequeued_value;
+    }
+    
+    else{
+        printf("queue underflow\n");
+        return -1;
+    }
+    
+}
+
+int front(Queue queue) {
+    if (!is_empty(queue)) {
+        return queue.items[queue.front];
+    } else {
+        printf("Queue is empty\n");
+        return -1;
+    }
+}
+
+int main(){
+    Queue myqueue;
+    initialize(&myqueue, 5);
+
+    enqueue(&myqueue, 10);
+    enqueue(&myqueue, 20);
+    enqueue(&myqueue, 30);
+    enqueue(&myqueue, 40);
+    enqueue(&myqueue, 50);
+    
+    printf("front element %d\n", front(myqueue));
+
+    printf("dequeue element %d\n", dequeue(&myqueue));
+    printf("front element %d\n", front(myqueue));
+   
+   
+    return 0;
+}
 ```
 
 
