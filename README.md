@@ -364,7 +364,8 @@ stack is empty
 top element: -1
 ```
 
-**Queue:**
+**Queue:** được sử dụng để lưu trữ và quản lý dữ liệu theo cơ chế FIFO (First In First Out). Queue cho phép thực hiện hai hoạt động cơ bản: **enqueue** (thêm một phần tử vào cuối hàng đợi) và **dequeue** (loại bỏ một phần tử từ đầu hàng đợi). Queue được quản lý thông qua hai con trỏ: **front** và **rear**. Phần tử được thêm vào **(enqueue) tại rear** và được loại bỏ **(dequeue) từ front**.
+- ví dụ:
 ```c
 #include<stdio.h>
 #include<stdlib.h>
