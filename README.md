@@ -274,6 +274,94 @@ node *createnode(int value){
 ## **Lesson: Stack - Queue**
 Stack là một data structure giúp lưu trữ, quản lý dữ liệu theo cơ chế LIFO (Last In, First Out). Stack cho phép hai thao tác cơ bản: **push (đẩy một phần tử vào ngăn xếp)** và **pop (lấy một phần tử ra khỏi ngăn xếp)**. Ngoài ra, thường còn có các thao tác khác như **peek (xem giá trị phần tử đầu ngăn xếp mà không loại bỏ nó)** và **isEmpty (kiểm tra xem ngăn xếp có trống không)**.
 <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/stack_representation.jpg">
+- Ví dụ:
+```c
+#include <stdio.h>
+#include <stdlib.h>
 
+typedef struct Stack {
+    int top; //giá trị trên cùng
+    int *items; //đây là con trỏ nhưng sau khi được cấp phát động thì items này sẽ thành mảng
+    int size; // kích thước của stack
+} Stack;
+
+void initialize(Stack *stack, int size){
+    stack->top = -1;
+    stack->items = malloc(sizeof(int) * size); //sizeof(int) * size (dấu * là phép nhân)
+    stack->size = size;
+}
+
+int is_full(Stack stack){    //vì k thay đổi giá trị của stack nên chỉ truyền vào giá trị không truyền vào con trỏ
+    return stack.top == stack.size -1; //vd: push 5 giá trị thì top là 4 = với size là 4 nên sẽ là truê
+}
+
+int is_empty(Stack stack){
+    return stack.top == -1;
+}
+
+void push(Stack *stack, int value){
+    if (!is_full(*stack))
+    {
+        stack->items[++stack->top] = value; //=> item[0] = 1
+    }
+    else{
+        printf("stack overflow\n");
+    }
+}
+
+int pop(Stack *stack){
+    if(!is_empty(*stack)){
+       return stack->items[stack->top--];
+    }
+    else{
+        printf("stack underflow\n");
+        return -1;
+    }
+}
+
+int top(Stack stack){
+    if(!is_empty(stack)){
+        return stack.items[stack.top];
+    }
+    else{
+        printf("stack is empty\n");
+        return -1;
+    }
+}
+
+int main(){
+    Stack mystack;
+    initialize(&mystack, 5);
+
+    push(&mystack, 10);
+    push(&mystack, 20);
+    push(&mystack, 30);
+    push(&mystack, 40);
+    push(&mystack, 50);
+
+    printf("top element: %d\n",top(mystack));
+    push(&mystack, 60);
+    printf("pop element: %d\n",pop(&mystack));
+    printf("top element: %d\n",top(mystack));
+    printf("pop element: %d\n",pop(&mystack));
+    printf("pop element: %d\n",pop(&mystack));
+    printf("pop element: %d\n",pop(&mystack));
+    printf("pop element: %d\n",pop(&mystack));
+    printf("top element: %d\n",top(mystack));
+}
+```
+- Output:
+```c
+top element: 50
+stack overflow 
+pop element: 50
+top element: 40
+pop element: 40
+pop element: 30
+pop element: 20
+pop element: 10
+stack is empty
+top element: -1
+```
 
 
