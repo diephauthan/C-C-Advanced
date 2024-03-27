@@ -477,5 +477,44 @@ int main(){
     return 0;
 }
 ```
+## **Lesson: Binary search - File operations - Code standards**
+**Binary search:** là một thuật toán tìm kiếm giá trị trên một mảng đã được sắp xếp hoặc một dãy có thứ tự. tiếp theo so sánh giá trị cần tìm (gọi là **"key"**) với giá trị ở giữa của mảng. Dựa vào kết quả của phép so sánh, có thể loại bỏ một nửa của mảng khỏi tìm kiếm vì giá trị cần tìm không thể nằm ở đó.
 
+**Thuật toán làm việc theo các bước sau:**
+
+**Xác định phạm vi tìm kiếm:** Ban đầu, phạm vi tìm kiếm bao gồm toàn bộ mảng.
+**Tìm phần tử giữa:** Tính chỉ số của phần tử giữa trong phạm vi tìm kiếm hiện tại. Nếu mảng có số phần tử chẵn, có hai phần tử ở giữa, có thể chọn một trong hai làm điểm giữa (thường là lựa chọn phần tử ở vị trí thấp hơn).
+**So sánh giá trị cần tìm với giá trị giữa:**
+Nếu giá trị cần tìm bằng giá trị ở giữa, công việc hoàn tất.
+```c
+if(arr[mid] == x)
+        return mid;
+```
+Nếu giá trị cần tìm nhỏ hơn giá trị giữa, bạn loại bỏ nửa sau của mảng khỏi tìm kiếm và tiếp tục tìm kiếm trong nửa đầu.
+Nếu giá trị cần tìm lớn hơn giá trị giữa, bạn loại bỏ nửa đầu của mảng và tiếp tục tìm kiếm trong nửa sau.
+```c 
+ if(arr[mid] > x) //loại vùng bên phải đi khi mid > x
+        return binarysearch(arr, left, mid-1, x); //nên dưới đây right sẽ được thay bằng mid - 1
+
+        return binarysearch(arr, mid+1, right, x);//nếu mid < x thì bỏ vùng bên trái nên left sẽ thay bằng mid
+```
+
+Lặp lại quy trình: Lặp lại quá trình trên với phạm vi tìm kiếm mới cho đến khi tìm thấy giá trị cần tìm hoặc cho đến khi phạm vi tìm kiếm không còn nữa (điều này có nghĩa là giá trị không tồn tại trong mảng).
+- Ví dụ:
+```c
+int binarysearch(int *arr, int left, int right, int x){ //truyền vào mảng, vị trí trái, phải và giá trị x cần tìm
+    if(right >= left){ 
+        int mid = (right +left)/2;
+
+        if(arr[mid] == x)
+        return mid;
+
+        if(arr[mid] > x) //loại vùng bên phải đi khi mid > x
+        return binarysearch(arr, left, mid-1, x); //nên dưới đây right sẽ được thay bằng mid - 1
+
+        return binarysearch(arr, mid+1, right, x);//nếu mid < x thì bỏ vùng bên trái nên left sẽ thay bằng mid +1
+    }
+    return -1; //vì vị trí trong mảng k có -1, khi return về -1 có nghĩa là k tìm thấy giá trị trong mảng
+}
+```
 
