@@ -37,8 +37,27 @@ int main(){
 ```c
 sum is 7
 ```
+**Assert:** là một thư viện của c, chứa thông tin để chẩn đoán hỗ trợ gỡ lỗi chương trình. Dùng thư viện này để debug chương trình vì:
+- Projects quá lớn và nhiều file không thể dùng printf để debug.
+- MCU không có màn hình Console
 
+Nếu kết quả của Assert trả về false bộ debug sẽ báo lỗi.
+```c
+#include <stdio.h>
+#include <assert.h>
 
+int main() {
+    int x = 5;
+
+    assert(x != 5);
+
+    // Chương trình sẽ tiếp tục thực thi nếu điều kiện là đúng.
+    printf("X is: %d", x);
+    
+    return 0;
+}
+```
+ví dụ trên sẽ báo lỗi vì x = 5 không thỏa điều kiện của assert
 
 ## **Lesson: Memory Layout**
 Memory layout của một chương trình C bao gồm 5 phần:
