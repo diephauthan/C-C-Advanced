@@ -1,4 +1,45 @@
 # Advanced C/C++
+## **Lesson: Stdarg - Assert**
+**Thư viện Stdarg:** được dùng để viết một hàm mà số lượng đối số có thể biến đổi (variable arguments). Trong hàm sum dưới đây
+```c
+int sum(int a, int b){
+    return a+b;
+}
+```
+Chỉ có thể truyền vào 2 đối số là a và b, nếu muốn truyền nhiều hơn thì giải pháp là dùng **variadic function**. `printf` là 1 hàm có thể truyền nhiều tham số vào và nó là variadic function.
+
+- Ví dụ:
+```c
+#include<stdio.h>
+#include<stdarg.h>
+
+int sum(int args_num, ...){ //args_num là số lượng tham số được truyền vào
+    va_list args; // nơi đối số sẽ đc lưu
+    va_start(args, args_num); //khởi tạo va_list bằng cách dùng va_start, và nó sẽ lấy tham số đầu tiên args_num
+
+    
+    int s= 0;   
+    
+    for(int i = 0; i < args_num; i++){
+        int x = va_arg(args, int); //truyền vào va_list và kiểu dữ liệu
+         s += x;
+    }
+    va_end(args);
+    return s;
+}
+
+int main(){
+    printf("sum is %d", sum(3,1,2,4));
+    return 0;
+}
+```
+- Output:
+```c
+sum is 7
+```
+
+
+
 ## **Lesson: Memory Layout**
 Memory layout của một chương trình C bao gồm 5 phần:
 
