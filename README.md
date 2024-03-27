@@ -483,7 +483,9 @@ int main(){
 **Thuật toán làm việc theo các bước sau:**
 
 **Xác định phạm vi tìm kiếm:** Ban đầu, phạm vi tìm kiếm bao gồm toàn bộ mảng.
+
 **Tìm phần tử giữa:** Tính chỉ số của phần tử giữa trong phạm vi tìm kiếm hiện tại. Nếu mảng có số phần tử chẵn, có hai phần tử ở giữa, có thể chọn một trong hai làm điểm giữa (thường là lựa chọn phần tử ở vị trí thấp hơn).
+
 **So sánh giá trị cần tìm với giá trị giữa:**
 Nếu giá trị cần tìm bằng giá trị ở giữa, công việc hoàn tất.
 ```c
@@ -500,7 +502,7 @@ Nếu giá trị cần tìm lớn hơn giá trị giữa, bạn loại bỏ nử
 ```
 
 Lặp lại quy trình: Lặp lại quá trình trên với phạm vi tìm kiếm mới cho đến khi tìm thấy giá trị cần tìm hoặc cho đến khi phạm vi tìm kiếm không còn nữa (điều này có nghĩa là giá trị không tồn tại trong mảng).
-- Ví dụ:
+- Example for a binarysearch function:
 ```c
 int binarysearch(int *arr, int left, int right, int x){ //truyền vào mảng, vị trí trái, phải và giá trị x cần tìm
     if(right >= left){ 
