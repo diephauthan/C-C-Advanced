@@ -77,7 +77,8 @@ Stack
 
 **Text Segment (Code Segment):** Là khu vực bộ nhớ chứa mã máy của chương trình sau khi được biên dịch. Đây là phần chứa các lệnh và hàm thực thi của chương trình. Khu vực này thường được đánh dấu là chỉ đọc để ngăn chặn việc sửa đổi mã thực thi.
 
-**Initialized Data Segment (DS):** chứa các biến toàn cục và biến static đã được khởi tạo với giá trị khác 0.
+**Initialized Data Segment (DS):** chứa **global variables** và **static variables** **đã được khởi tạo với giá trị khác 0**.
+các biến này có thể đọc và ghi, các biến ở DS chỉ được thu hồi khi chương trình kết thúc (thoát ra khỏi hàm main, với MCU thì khi bị ngắt nguồn)
 - Ví dụ:
 ```c
 int global = 100; //global được khởi tạo với giá trị 100
@@ -86,7 +87,8 @@ int foo() {
     return 0;
 }
 ```
-**Uninitialized Data Segment (BSS):** là nơi lưu trữ global variables, static variables không được khởi tạo hoặc khởi tạo với giá trị bằng 0.
+**Uninitialized Data Segment (BSS):** là nơi lưu trữ **global variables, static variables không được khởi tạo hoặc khởi tạo với giá trị bằng 0.**
+các biến này có thể đọc và ghi, các biến ở BSS chỉ được thu hồi khi chương trình kết thúc (thoát ra khỏi hàm main, với MCU thì khi bị ngắt nguồn)
 - Ví dụ:
 ```c
 int global; //không được khởi tạo giá trị 
