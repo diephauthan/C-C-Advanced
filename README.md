@@ -97,7 +97,10 @@ int foo() {
     return 0;
 }
 ```
-**Heap (Dynamic Memory Allocation):** Trong C/C++ chúng ta có thể hoàn toàn control được quá trình cấp phát hoặc giải phóng bộ nhớ bằng các lệnh như malloc, calloc, relloc, free, new, delete, ... Vùng nhớ được cấp phát chính là HEAP, vùng nhớ này sẽ phình lên ( grows upward ) mỗi khi bạn cấp phát. Khi sử dụng xong các bạn phải delete vùng nhớ này. Nếu quên không delete sẽ gây ra hiện tượng Memory Leak.
+**Heap (Dynamic Memory Allocation):** Trong C/C++ chúng ta có thể hoàn toàn control được quá trình cấp phát hoặc giải phóng bộ nhớ bằng các lệnh như malloc, calloc, relloc, free, new, delete, ... Vùng nhớ được cấp phát chính là HEAP, vùng nhớ này sẽ phình lên ( grows upward ) mỗi khi bạn cấp phát. Khi sử dụng xong các bạn phải free(delete trong c++) vùng nhớ này. Nếu quên không delete sẽ gây ra hiện tượng Memory Leak.
+
+Bộ nhớ Heap được dùng để lưu trữ vùng nhớ cho những biến con trỏ được cấp phát động bởi các hàm malloc - calloc - realloc (trong C).
+
 - Ví dụ:
 ```c
 #include <stdio.h>
@@ -178,8 +181,6 @@ Trước khi gọi add: Stack chứa chỉ frame của main, với biến result
 Khi gọi add(5, 3): Stack giờ đây có thêm frame cho add ở đỉnh. Frame này chứa địa chỉ trở về (nơi trong main mà sau khi add thực thi xong sẽ trở về), và tham số cho add là a = 5 và b = 3.
 
 Sau khi add trả về giá trị 8 và frame của add được loại bỏ: Giá trị trả về được gán cho result trong frame của main. Stack trở lại như ban đầu nhưng với result đã được cập nhật.
-
-Hình ảnh này giúp minh họa cách mà stack quản lý việc gọi và trở về từ các hàm, thông qua việc sử dụng các stack frames. Mỗi frame chứa tất cả thông tin cần thiết cho việc thực thi của một hàm, bao gồm địa chỉ trở về, tham số, và biến cục bộ, giúp cho việc thực thi hàm được tổ chức và cô lập một cách rõ ràng.
 
 **Cấu trúc của một function frame gồm bốn phần chính: Function Parameter, Return Address, Saved Previus Frame Pointer, Local Variable.**
 
