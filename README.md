@@ -123,7 +123,13 @@ int main() {
 **Stack (Automatic Variable Storage):** Khác với HEAP, Stack là một vùng nhớ được cấp phát tự động và có cấu trúc LIFO. 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/20231130114919/LIFO-Operations-in-stack.jpg">
 
-Mỗi khi chương trình được gọi, thì các function frame sẽ được gọi và push vào trong stack. Function Frame có cấu trúc như ví dụ dưới đây:
+Chứa các biến cục bộ và tham số truyền vào hàm, các biến và tham số này đc khởi tạo khi hàm của biến cục bộ or biến môi trường (tham số truyền vào) được gọi ra từ hàm main. Khi một hàm được gọi, một frame (nghĩa là frame sẽ lưu trữ thông tin về biến cục bộ của hàm, các giá trị tham số) mới sẽ được tạo trên stack để lưu trữ các biến cục bộ của hàm đó. Khi hàm kết thúc, frame  đó sẽ bị loại bỏ khỏi stack, và bất kỳ biến cục bộ nào trong frame đó cũng sẽ bị hủy.
+
+Có thể đọc và ghi giá trị khi còn ở trong hàm
+
+Sau khi ra khỏi hàm vùng nhớ sẽ thu hồi frame này.
+
+ ví dụ dưới đây:
 - Ví dụ:
 ```c
 #include <stdio.h>
