@@ -588,4 +588,146 @@ int binarysearch(int *arr, int left, int right, int x){ //truyền vào mảng, 
     return -1; //vì vị trí trong mảng k có -1, khi return về -1 có nghĩa là k tìm thấy giá trị trong mảng
 }
 ```
+## **Lesson 13: Class**
+**class:** là một cấu trúc dữ liệu mà user tự định nghĩa, trong đó user có thể đóng gói dữ liệu và các hàm thành viên (member functions) liên quan lại với nhau. Một class là một kiểu dữ liệu tùy chỉnh, cho phép tạo ra các đối tượng (objects) dựa trên nó.
+
+Class cung cấp một cách để tổ chức mã nguồn của bạn theo các đối tượng có liên quan và cung cấp một cách tiếp cận để làm việc với dữ liệu và hành vi của các đối tượng đó. Class thường được sử dụng trong lập trình hướng đối tượng (OOP) để tạo ra các đối tượng có tính tổ chức và tái sử dụng cao.
+
+```c
+#include <iostream>
+
+using namespace std;
+
+// Khai báo class Hinhchunhat
+class Hinhchunhat
+{
+public:
+    int chieudai;
+    int chieurong;
+
+    // Phương thức tính diện tích hình chữ nhật
+    int get_retangle_area()
+    {
+        return chieudai * chieurong;
+    }
+
+    // Phương thức hiển thị thông điệp
+    void display();
+};
+
+// Định nghĩa phương thức display của class Hinhchunhat
+void Hinhchunhat::display()
+{
+    cout << "Display Retangle" << endl;
+}
+
+// Hàm main
+int main()
+{
+    // Tạo một đối tượng hinh1 từ class Hinhchunhat
+    Hinhchunhat hinh1;
+
+    // Gán giá trị cho các thuộc tính của đối tượng hinh1
+    hinh1.chieudai = 10;
+    hinh1.chieurong = 5;
+
+    // Gọi phương thức display để hiển thị thông điệp
+    hinh1.display();
+
+    // In ra diện tích của hình chữ nhật bằng cách gọi phương thức get_retangle_area
+    cout << "get_retangle_area:" << hinh1.get_retangle_area() << endl;
+
+    return 0;
+}
+```
+Khai báo **class Hinhchunhat** để định nghĩa một **class mới**.
+
+Trong class này, có **hai biến dữ liệu** **chieudai** và **chieuron**g để lưu chiều dài và chiều rộng của hình chữ nhật, và **hai phương thức**:
+
+**get_retangle_area()**: trả về diện tích của hình chữ nhật (tích của chiều dài và chiều rộng).
+**display()**: hiển thị một thông điệp.
+Sau đó, chúng ta **định nghĩa**  display() bên **ngoài class** bằng cách sử dụng **toán tử phạm vi ::**.
+
+Trong hàm main(), chúng ta **tạo một đối tượng hinh1** từ class Hinhchunhat và gán giá trị cho các thuộc tính của nó.
+
+Tiếp theo, chúng ta gọi phương thức display() để hiển thị thông điệp và get_retangle_area() để tính và in ra diện tích của hình chữ nhật.
+
+Trong C++, phương thức và hàm có một số điểm giống nhau nhưng cũng có những khác biệt quan trọng:
+
+Giống nhau:
+
+Thực thi mã: Cả hai đều là các khối mã thực hiện một tác vụ cụ thể.
+
+Tham số: Cả hai có thể chấp nhận các tham số đầu vào (argument).
+
+Trả về giá trị: Cả hai có thể trả về một giá trị (hoặc không trả về gì).
+
+Khác biệt:
+
+Phạm vi (scope):
+
+Hàm (function): Có thể được định nghĩa bên ngoài các lớp và không thuộc về bất kỳ class nào. Hàm có thể được gọi từ bất kỳ nơi nào trong chương trình.
+Phương thức (method): Là các hàm đặc biệt được định nghĩa trong phạm vi của một class. Phương thức chỉ có thể được gọi trên đối tượng của class đó.
+Tham số ẩn (implicit parameter):
+
+Hàm (function): Không có tham số ẩn.
+Phương thức (method): Thường có một tham số ẩn là con trỏ this, cho biết đối tượng trên đó phương thức được gọi.
+Access Control:
+
+Hàm (function): Không có quyền truy cập trực tiếp vào dữ liệu thành viên của một class, trừ khi chúng được truyền vào như tham số hoặc được truy cập thông qua các phương thức công cộng.
+Phương thức (method): Có thể truy cập trực tiếp vào dữ liệu thành viên (nếu được khai báo public hoặc protected) của class mà nó thuộc về.
+Trong ngôn ngữ lập trình C, khái niệm của phương thức không tồn tại, chỉ có hàm. Nhưng trong C++, hàm được định nghĩa bên trong class được gọi là phương thức.
+
+**Constructor:** là một phương thức đặc biệt của một class, được gọi khi một đối tượng của lớp đó được tạo ra. Constructor thường được sử dụng để khởi tạo các biến thành viên của đối tượng và thực hiện các công việc khởi tạo khác.
+
+Trong C++, constructor có tên giống với tên của lớp và không có kiểu trả về (thậm chí không có kiểu void). Constructor có thể có hoặc không có tham số. Nếu một lớp không định nghĩa constructor, C++ sẽ tự động tạo một constructor mặc định (default constructor) không nhận tham số.
+
+Dưới đây là một ví dụ đơn giản về một lớp với constructor trong C++:
+```c
+#include <iostream>
+
+class Hinhchunhat {
+private:
+    int chieudai;
+    int chieurong;
+
+public:
+    // Constructor không tham số
+    Hinhchunhat() {
+        chieudai = 0;
+        chieurong = 0;
+        std::cout << "Constructor duoc goi!" << std::endl;
+    }
+
+    // Constructor có tham số
+    Hinhchunhat(int dai, int rong) {
+        chieudai = dai;
+        chieurong = rong;
+        std::cout << "Constructor duoc goi voi tham so!" << std::endl;
+    }
+
+    // Phương thức để hiển thị thông tin
+    void display() {
+        std::cout << "Chiều dài: " << chieudai << ", Chiều rộng: " << chieurong << std::endl;
+    }
+};
+
+int main() {
+    // Sử dụng constructor không tham số
+    Hinhchunhat hinh1;
+
+    // Sử dụng constructor có tham số
+    Hinhchunhat hinh2(4, 3);
+
+    // Hiển thị thông tin của các hình chữ nhật
+    std::cout << "Thông tin hình 1: ";
+    hinh1.display();
+    std::cout << "Thông tin hình 2: ";
+    hinh2.display();
+
+    return 0;
+}
+```
+
+
 
