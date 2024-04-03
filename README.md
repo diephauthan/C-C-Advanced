@@ -301,7 +301,77 @@ Global Var at end: 20
 Khi biến toàn cục được khai báo với từ khóa static thì chỉ có thể truy cập trong tệp nguồn (source file) mà nó được khai báo. Điều này giúp giới hạn phạm vi truy cập của biến, ngăn chặn các tệp nguồn khác từ việc trực tiếp truy cập hoặc thay đổi giá trị của nó. Đây là một phương tiện để ẩn thông tin và giảm sự phụ thuộc giữa các phần khác nhau của chương trình. Do được khai báo với static, giá trị của biến sẽ được khởi tạo một lần duy nhất và giữ nguyên giá trị giữa các lần gọi hàm hoặc thậm chí giữa các lần chạy chương trình khác nhau, nếu biến được khởi tạo với một giá trị cụ thể trong mã. Các biến toàn cục static được khởi tạo tự động với giá trị mặc định là 0 (đối với các kiểu số), NULL (đối với con trỏ), hoặc {0} (đối với các kiểu dữ liệu tổng hợp như mảng hoặc struct). Cũng có thể khởi tạo chúng một cách rõ ràng với giá trị khác khi khai báo. 
 
 
-## **Lesson: Linked list**
+## **Lesson 8: Struct - Union**
+**Struct:** là một cấu trúc dữ liệu để tạo ra một kiểu dữ liệu mới bằng cách kết hợp nhiều kiểu dữ liệu khác lại với nhau. Cấu trúc này cho phép bạn tự định nghĩa các kiểu dữ liệu phức tạp bằng cách kết hợp các kiểu dữ liệu cơ bản của C như int, float, char, v.v.
+Một struct trong C có thể bao gồm một hoặc nhiều biến thành viên (member variables), mỗi biến thành viên có thể là bất kỳ kiểu dữ liệu nào trong C. Điều này cho phép bạn tạo ra các đối tượng dữ liệu phức tạp hơn so với việc sử dụng các kiểu dữ liệu cơ bản.
+- Ví dụ:
+```c
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdint.h>
+
+typedef struct ex{
+    uint8_t a; //1 byte
+    uint16_t b; //2 byte
+    uint32_t c; //4 byte
+}ex;
+/* cách tính kích thước của struct
+    đầu tiền xem thành viên có kiểu dữ liệu lớn nhất, unit32_t (4byte) lấy làm cơ sở để quét
+    uint8_t a              |    a    |    b    |    b   |padding| 
+    unit16_t b             |    c    |    c    |    c   |   c   | 
+    unit32_t c
+
+=> Struct này sẽ có kích thước là 8 byte
+ */
+
+
+typedef struct ex1{
+    uint8_t a; //1 byte
+    uint32_t c; //4 byte
+    uint16_t b; //2 byte
+}ex1;
+
+/* cách tính kích thước của struct
+    đầu tiền xem thành viên có kiểu dữ liệu lớn nhất, unit32_t (4byte) lấy làm cơ sở để quét
+    uint8_t a              |    a    |padding|padding|padding| 
+    unit32_t c             |    c    |   c   |   c   |   c   | 
+    unit16_t b             |    b    |   b   |padding|padding|
+
+=> Struct này sẽ có kích thước là 12 byte
+ */
+
+int main(){
+    printf("size of struct ex %zu\n", sizeof(ex));
+    printf("size of struct ex1 %zu\n", sizeof(ex1));
+    return 0;
+}
+```
+- Output:
+```c
+size of struct ex 8
+size of struct ex1 12
+```
+**Data Structure Alignment trong C/C++** https://cppdeveloper.com/c-nang-cao/data-alignment-trong-c-c/
+
+**Union:**
+- Ví dụ
+```c
+typedef union uni
+{ 
+     uint8_t arr1[5];
+     uint16_t arr2[9];
+     uint32_t arr3[3];
+}uni;
+/* lấy kiểu dữ liệu lớn nhất để quét, trong vd trên thì unit32_t là lớn nhất 4 bytes
+arr1[5] = 8 bytes
+arr2[9] = 20 bytes
+arr3[3] = 12 bytes
+
+=> kích thước uni = 20 bytes
+ */
+```
+
+## **Lesson 10: Linked list**
 
 Linked list bao gồm một chuỗi các "nút" (nodes), mỗi nút chứa một giá trị dữ liệu và một con trỏ (pointer) đến nút tiếp theo trong chuỗi.
 
