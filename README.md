@@ -353,7 +353,7 @@ size of struct ex1 12
 ```
 **Data Structure Alignment trong C/C++** https://cppdeveloper.com/c-nang-cao/data-alignment-trong-c-c/
 
-**Union:**
+**Union:** là một cấu trúc dữ liệu giúp lập trình viên kết hợp nhiều kiểu dữ liệu khác nhau vào cùng một vùng nhớ. Mục đích chính của union là tiết kiệm bộ nhớ bằng cách chia sẻ cùng một vùng nhớ cho các thành viên của nó. Điều này có nghĩa là, trong một thời điểm, chỉ một thành viên của union có thể được sử dụng. Điều này được ứng dụng nhằm tiết kiệm bộ nhớ.
 - Ví dụ
 ```c
 typedef union uni
