@@ -370,7 +370,8 @@ arr3[3] = 12 bytes
 => kích thước uni = 20 bytes
  */
 ```
-
+## **Lesson 9: JSON**
+**JSON:** 
 ## **Lesson 10: Linked list**
 
 Linked list bao gồm một chuỗi các "nút" (nodes), mỗi nút chứa một giá trị dữ liệu và một con trỏ (pointer) đến nút tiếp theo trong chuỗi.
