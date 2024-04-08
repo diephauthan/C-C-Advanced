@@ -800,5 +800,76 @@ int main() {
 }
 ```
 
+## **Lesson 14: OOPs Concepts**
+
+**Encapsulation:** là một nguyên tắc trong lập trình hướng đối tượng (OOP) mà mục tiêu là che dấu các chi tiết bên trong một đối tượng và chỉ cho phép truy cập thông qua các phương thức công khai (public methods) hoặc giao diện công khai. Điều này giúp bảo vệ dữ liệu và chức năng của đối tượng khỏi sự can thiệp bên ngoài và tạo ra một giao diện dễ sử dụng.
+Các yếu tố chính của Encapsulation bao gồm:
+
+Thuộc tính và Phương thức: Dữ liệu và các hành vi của một đối tượng được đóng gói vào cùng một cấu trúc, được gọi là lớp (class) trong OOP. Thuộc tính (properties) đại diện cho dữ liệu và phương thức (methods) đại diện cho hành vi.
+
+Access Modifiers: Encapsulation sử dụng các phạm vi truy cập (access modifiers) như public, private và protected để quản lý việc truy cập đến các thành phần của một đối tượng. Thuộc tính và phương thức được khai báo là private chỉ có thể truy cập bên trong cùng một lớp, trong khi public có thể truy cập từ bên ngoài lớp.
+
+Giao diện công khai (Public Interface): Các phương thức công khai (public methods) cung cấp một giao diện cho các đối tượng bên ngoài để tương tác với đối tượng. Các phương thức này đại diện cho hành vi được cho phép và cung cấp một cách an toàn để thực hiện các thao tác trên dữ liệu của đối tượng.
+
+Che dấu chi tiết bên trong: Chi tiết cài đặt của một đối tượng được che dấu khỏi người sử dụng bên ngoài. Điều này giúp bảo vệ dữ liệu và chức năng của đối tượng khỏi sự can thiệp trực tiếp, và chỉ cho phép truy cập thông qua giao diện công khai.
+
+- Ví dụ:
+```
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class Student
+{
+private:
+    string Name;
+    double GPA;
+    int StudentID;
+public:
+    string getName(){ // dùng method để truy cập vào property
+        return Name;
+    }
+
+    void setName(string name){ // dùng method để thay đổi tên 
+        Name = name;
+    }
+
+    double getGPA()
+    {
+        return GPA;
+    }
+
+    void setGPA(double gpa)
+    { // dùng method để thay đổi tên 
+        GPA = gpa;
+    }
+
+    int getStudentID()
+    {
+        return StudentID = 12345;
+    }
+};
 
 
+int main(){
+    Student sv1;
+    sv1.setName("john"); //toán tử . được sử dụng khi bạn truy cập các thành phần của một đối tượng trực tiếp.
+    cout << "Student name: " << sv1.getName() << endl; // Gọi phương thức getName() để lấy giá trị của thuộc tính Name và in ra màn hình
+
+    sv1.setGPA(0);
+    cout << "Student GPA: " << sv1.getGPA() << endl; 
+
+    cout << "Student ID: " << sv1.getStudentID() << endl;
+
+
+
+    return 0;
+}
+```
+
+```
+Student name: john
+Student GPA: 0    
+Student ID: 12345
+```
