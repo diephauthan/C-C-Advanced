@@ -827,6 +827,8 @@ private:
     double GPA;
     int StudentID;
 public:
+    Student(string name); // Constructor
+
     string getName(){ // dùng method để truy cập vào property
         return Name;
     }
@@ -847,14 +849,23 @@ public:
 
     int getStudentID()
     {
-        return StudentID = 12345;
+        return StudentID;
     }
 };
 
+Student::Student(string name)
+{
+    Name = name;
+    static int id = 1000;
+    StudentID = id;
+    id++;
+}
 
 int main(){
-    Student sv1;
-    sv1.setName("john"); //toán tử . được sử dụng khi bạn truy cập các thành phần của một đối tượng trực tiếp.
+    Student sv1("trung");
+    Student sv2("trang");
+    Student sv3("john");
+    //sv1.setName("john"); //toán tử . được sử dụng khi bạn truy cập các thành phần của một đối tượng trực tiếp.
     cout << "Student name: " << sv1.getName() << endl; // Gọi phương thức getName() để lấy giá trị của thuộc tính Name và in ra màn hình
 
     sv1.setGPA(0);
@@ -862,14 +873,20 @@ int main(){
 
     cout << "Student ID: " << sv1.getStudentID() << endl;
 
+    cout << "Student ID: " << sv2.getStudentID() << endl;
+
+    cout << "Student ID: " << sv3.getStudentID() << endl;
+
 
 
     return 0;
 }
 ```
-
 ```
-Student name: john
-Student GPA: 0    
-Student ID: 12345
+Student name: trung
+Student GPA: 0
+Student ID: 1000
+Student ID: 1001
+Student ID: 1002
 ```
+**Inheritance:**
