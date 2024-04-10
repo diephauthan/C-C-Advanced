@@ -889,4 +889,103 @@ Student ID: 1000
 Student ID: 1001
 Student ID: 1002
 ```
-**Inheritance:**
+**Inheritance:** Trong C++, có thể kế thừa các thuộc tính và phương thức từ lớp này sang lớp khác.
+> Lớp dẫn xuất (con) - lớp kế thừa từ lớp khác
+
+> Lớp cơ sở (cha) - lớp được kế thừa từ
+Để kế thừa từ một lớp, ta dùng ký hiệu `:`
+
+Trong ví dụ bên dưới, lớp Car (con) kế thừa các thuộc tính và phương thức từ lớp Vehicle (cha):
+```
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+class Vehicle{
+    public:    
+        string brand = "Ford";
+        void honk() {
+        cout << "Tuut, tuut! \n" ;
+    }
+};
+
+class Car: public Vehicle {
+  public: 
+    string model = "Mustang";
+};
+
+int main() {
+  Car myCar;
+  myCar.honk();
+  cout << myCar.brand + " " + myCar.model;
+  return 0;
+}
+```
+In C++, there are three access specifiers:
+- public - members are accessible from outside the class
+- private - members cannot be accessed (or viewed) from outside the class
+- protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes. You will learn more about Inheritance later.
+ protected, is similar to private, but it can also be accessed in the inherited class
+
+
+Khi bạn kế thừa từ lớp cơ sở với access specifier là protected, các thành viên và phương thức public của lớp cơ sở sẽ trở thành protected trong lớp dẫn xuất. Điều này có nghĩa là bạn vẫn có thể kế thừa các thành viên và phương thức từ lớp cơ sở, nhưng chúng sẽ không được truy cập trực tiếp từ bên ngoài lớp dẫn xuất.
+
+Để truy cập các thành viên và phương thức của lớp cơ sở từ bên ngoài lớp dẫn xuất, bạn cần cung cấp một giao diện công khai thông qua các phương thức public trong lớp dẫn xuất.
+
+Dưới đây là một ví dụ minh họa:
+```
+#include <iostream>
+using namespace std;
+
+// Lớp cơ sở (base class)
+class Base {
+protected:
+    int protectedMember;
+public:
+    void publicFunction() {
+        cout << "Public function from Base" << endl;
+    }
+    void setProtectedMember(int value) {
+        protectedMember = value;
+    }
+    int getProtectedMember() {
+        return protectedMember;
+    }
+};
+
+// Lớp dẫn xuất (derived class)
+class Derived : protected Base {
+public:
+    void accessBaseMembers() {
+        setProtectedMember(42); // Có thể truy cập từ Derived
+        cout << "Protected member of Base: " << getProtectedMember() << endl; // Có thể truy cập từ Derived
+        publicFunction(); // Có thể truy cập từ Derived
+    }
+};
+
+int main() {
+    Derived derivedObj;
+    derivedObj.accessBaseMembers(); // Gọi phương thức từ lớp dẫn xuất
+    // derivedObj.setProtectedMember(10); // Lỗi, không thể truy cập từ bên ngoài Derived
+    // derivedObj.getProtectedMember(); // Lỗi, không thể truy cập từ bên ngoài Derived
+    // derivedObj.publicFunction(); // Lỗi, không thể truy cập từ bên ngoài Derived
+    return 0;
+}
+```
+
+Overriding là một trong những đặc tính của kế thừa (inheritance). Đặc tính này cho phép một lớp con (derived class) cung cấp một triển khai mới cho một phương thức đã được định nghĩa trong lớp cha (base class). Khi lớp con override một phương thức, nó cung cấp một triển khai cụ thể cho phương thức đó, thay vì sử dụng triển khai mặc định được kế thừa từ lớp cha.
+
+Overriding là một trong những cách quan trọng nhất để mở rộng và tuỳ chỉnh hành vi của các lớp trong OOP. Nó cho phép bạn sử dụng các phương thức chung được định nghĩa trong lớp cha, nhưng cung cấp triển khai cụ thể cho chúng trong các lớp con, tạo ra sự linh hoạt và tái sử dụng mã.
+
+- Đặc điểm của overriding:
+
+Phương thức trong lớp con có cùng tên, kiểu trả về và các tham số với phương thức trong lớp cha.
+
+Phương thức trong lớp con sử dụng từ khóa override để ghi đè phương thức trong lớp cha.
+
+Khi gọi phương thức từ một đối tượng của lớp con, triển khai của phương thức trong lớp con sẽ được gọi.
+
+Overriding là một cách mạnh mẽ để tùy chỉnh và mở rộng hành vi của lớp cha trong OOP, đồng thời duy trì sự linh hoạt và tái sử dụng mã.
+
+**Polymorphism:**
