@@ -1,5 +1,5 @@
 # Advanced C/C++
-## **Lesson: Stdarg - Assert**
+## **Lesson 2: Stdarg - Assert**
 **Thư viện Stdarg:** được dùng để viết một hàm mà số lượng đối số có thể biến đổi (variable arguments). Trong hàm sum dưới đây
 ```c
 int sum(int a, int b){
@@ -59,7 +59,92 @@ int main() {
 ```
 ví dụ trên sẽ báo lỗi vì x = 5 không thỏa điều kiện của assert
 
-## **Lesson: Memory Layout**
+## **Lesson 3: Pointer**
+Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.
+```
+#include <stdio.h>
+
+int main() {
+    int *ptr;
+    printf("Size of pointer: %d bytes\n", sizeof(ptr));
+    return 0;
+}
+```
+**Function Pointer:** là một loại con trỏ trong ngôn ngữ lập trình C và C++. Nó tham chiếu đến một hàm thay vì một giá trị dữ liệu như các loại con trỏ khác. Mục đích chính của con trỏ hàm là cho phép chương trình chọn hàm để thực thi tại thời điểm chạy.
+
+Cụ thể, khi ta khai báo một con trỏ hàm, ta sẽ cần chỉ định kiểu dữ liệu của hàm mà con trỏ đó sẽ tham chiếu đến, bao gồm kiểu trả về và các tham số của hàm. Sau đó, ta có thể gán con trỏ hàm này cho một hàm cụ thể. Khi gọi con trỏ hàm, chương trình sẽ thực thi hàm mà con trỏ đang tham chiếu đến.
+```
+#include<stdio.h>
+
+void swap(int *xp, int *yp){
+    int temp;
+    temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+
+void bubbleSort(int arr[], int n){
+    for(int i = 0; i < n-1; i++){
+        for(int j = n-1; j > i; j--){
+            if(arr[j] < arr[j-1]){
+                swap(&arr[j], &arr[j-1]);
+            }
+        }
+    }
+}
+
+void printArray(int arr[], int size) {
+    int i;
+    for (i=0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    printf("Mang truoc khi sap xep: \n");
+    printArray(arr, n);
+    bubbleSort(arr, n);
+    printf("Mang sau khi sap xep: \n");
+    printArray(arr, n);
+    return 0;
+}
+
+/* i = 0
+   64 34 25 12 22 11 90
+   i                  j 
+   đầu tiên so sách 90 và 11, tiếp đó là các cặp liền kề đến khi đến vị trí i thì stop
+   i = 1
+   11 64 34 25 12 22 90
+       i
+
+   i = 2
+   11 12 64 34 25 22 90
+          i
+
+   i = 3
+   11 12 22 64 34 25 90
+             i
+
+   i = 4
+   11 12 22 25 64 34 90
+                i
+
+   i = 5
+   11 12 22 25 34 64 90
+                   i
+*/
+```
+```
+Mang truoc khi sap xep: 
+64 34 25 12 22 11 90 
+Mang sau khi sap xep:
+11 12 22 25 34 64 90
+```
+
+
+## **Lesson 4: Memory Layout**
 Memory layout của một chương trình C bao gồm 5 phần:
 
 Text segment  (i.e. instructions)
