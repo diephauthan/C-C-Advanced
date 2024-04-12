@@ -60,7 +60,7 @@ int main() {
 ví dụ trên sẽ báo lỗi vì x = 5 không thỏa điều kiện của assert
 
 ## **Lesson 3: Pointer**
-Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.
+**Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.**
 ```
 #include <stdio.h>
 
@@ -73,6 +73,36 @@ int main() {
 **Function Pointer:** là một loại con trỏ trong ngôn ngữ lập trình C và C++. Nó tham chiếu đến một hàm thay vì một giá trị dữ liệu như các loại con trỏ khác. Mục đích chính của con trỏ hàm là cho phép chương trình chọn hàm để thực thi tại thời điểm chạy.
 
 Cụ thể, khi ta khai báo một con trỏ hàm, ta sẽ cần chỉ định kiểu dữ liệu của hàm mà con trỏ đó sẽ tham chiếu đến, bao gồm kiểu trả về và các tham số của hàm. Sau đó, ta có thể gán con trỏ hàm này cho một hàm cụ thể. Khi gọi con trỏ hàm, chương trình sẽ thực thi hàm mà con trỏ đang tham chiếu đến.
+>Syntax:
+`return_type (* pointer_name) (arg_1_datatype, arg_2_datatype, ...);`
+
+>Example:
+`int (*ptr)(int, int);`
+```
+#include<stdio.h>
+
+void sum(int a, int b){
+    printf("phep toan la %d", a+b);
+}
+
+void minus(int a, int b){
+    printf("phep toan la %d", a-b);
+}
+
+void multiply(int a, int b){
+    printf("phep toan la %d", a*b);
+}
+
+void div(int a, int b){
+    printf("phep toan la %d", a/b);
+}
+
+int main(){
+    void (*pheptoan)(int, int) = &div; // khai báo
+    pheptoan(10,5);
+    return 0;
+}
+```
 ```
 #include<stdio.h>
 
@@ -142,7 +172,10 @@ Mang truoc khi sap xep:
 Mang sau khi sap xep:
 11 12 22 25 34 64 90
 ```
-
+**Null Pointer:**
+**Const Pointer and Pointer to Const:**
+**Void Pointer:**
+**Pointer to Pointer:**
 
 ## **Lesson 4: Memory Layout**
 Memory layout của một chương trình C bao gồm 5 phần:
