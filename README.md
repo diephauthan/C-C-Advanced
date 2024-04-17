@@ -1208,3 +1208,138 @@ Một số thành phần chính của STL:
 - Algorithms
 - Functor
 
+**Container:** là một cấu trúc dữ liệu chứa nhiều phần tử theo một cách cụ thể. STL cung cấp một số container tiêu biểu giúp lưu trữ và quản lý dữ liệu. 
+- Vector
+- List
+- Map
+- Array
+
+**Vector:** là một trong những container quan trọng nhất trong STL của C++. Nó cung cấp một mảng động với khả năng thay đổi kích thước một cách linh hoạt. 
+
+Một số đặc điểm chính của vector:
+- vector là một mảng động, tức là có khả năng thay đổi kích thước một cách linh hoạt.
+- Truy cập ngẫu nhiên: Việc truy cập các phần tử của vector có thể được thực hiện bằng cách sử dụng chỉ số.
+- Hiệu suất chèn và xóa: Chèn và xóa phần tử ở cuối vector có hiệu suất tốt. Tuy nhiên, chèn và xóa ở vị trí bất kỳ có thể đòi hỏi di chuyển một số phần tử.
+
+Một số method của vector:
+- at(): Truy cập vào phần tử của vector
+- size(): Trả về kích thước của vector
+- resize(): Thay đổi kích thước của vector
+- begin(): Địa chỉ của phần tử đầu tiên của vector
+- end(): Địa chỉ của phần tử cuối cùng của vector
+- push_back(): Thêm phần tử vào vị trí cuối của vector
+
+```
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+int main()
+{
+  
+    vector <int> arr1 = {2,5,7,4,9};
+
+    arr1.resize(7);
+    arr1[1] = 2;
+    arr1.at(0) = 3;
+    arr1.size();
+    arr1.begin();
+    arr1.end();
+    arr1.push_back(10);
+
+    for (int i = 0; i < arr1.size(); i++)
+    {
+        cout << "Value: " << arr1.at(i) << endl;
+    }
+    
+    arr1.push_back(10);
+
+    cout << "-----------" << endl;
+    for (int i = 0; i < arr1.size(); i++)
+    {
+        cout << "Value: " << arr1.at(i) << endl;
+    }
+    
+
+    return 0;
+}
+```
+**List:** là một container trong STL của C++, triển khai dưới dạng danh sách liên kết hai chiều. Dưới đây là một số đặc điểm quan trọng của list:
+- Truy cập tuần tự: Truy cập các phần tử của list chỉ có thể thực hiện tuần tự, không hỗ trợ truy cập ngẫu nhiên.
+- Hiệu suất chèn và xóa: Chèn và xóa ở bất kỳ vị trí nào trong danh sách có hiệu suất tốt hơn so với vector. Điều này đặc biệt đúng khi thêm/xóa ở giữa danh sách.
+
+Một số method của list:
+- push_back():
+- pop_back():
+- insert(): Chèn một node vào list
+- erase(): Xóa một node của list
+- size(): Trả về kích thước của list
+
+
+```
+#include<iostream>
+#include<list>
+
+using namespace std;
+
+int main()
+{
+    list <int> arr2;
+    arr2.push_back(20);
+    arr2.push_back(10);
+    arr2.push_back(30);
+    arr2.push_back(40);
+    arr2.push_back(50);
+    arr2.push_back(60);
+    arr2.push_front(100);
+
+    list<int>::iterator it = arr2.begin();
+    advance(it, 0); // Di chuyển iterator đến vị trí thứ 2
+    arr2.insert(it, 99);
+    // SỬ DỤNG ITERATOR TRONG VÒNG LẶP FOR
+    // list<int>::iterator it;
+    // for(it = arr2.begin(); it != arr2.end(); it++)
+    // {
+    //     cout<< "value:"<<(*it)<< endl;
+    // }
+
+    // SỬ DỤNG DẤU : TRONG VÒNG LẶP FOR
+    for(auto const var : arr2)
+    {
+        cout << "value: "<< var << endl;
+    }
+
+    return 0;
+}
+```
+Việc sử dụng iterator trong vòng lặp for để duyệt qua các phần tử của một danh sách là một phương pháp phổ biến và linh hoạt trong C++. Tuy nhiên, việc sử dụng vòng lặp for với dấu hai chấm (:) cũng là một phương pháp tiện lợi trong một số trường hợp. Dưới đây là một số điểm mạnh và yếu của mỗi phương pháp:
+
+> Sử dụng iterator trong vòng lặp for:
+- Điểm mạnh:
+
+    - Linh hoạt: Iterator cho phép bạn thực hiện các thao tác phức tạp hơn trên danh sách, như xóa hoặc chèn phần tử trong quá trình lặp.
+  
+    - Phù hợp với tất cả các loại danh sách: Phương pháp này hoạt động với mọi loại danh sách trong C++ như std::vector, std::list, std::deque, và những loại cấu trúc dữ liệu tương tự.
+
+- Điểm yếu:
+
+    - Cú pháp phức tạp hơn: Sử dụng iterator có thể làm tăng độ phức tạp của mã và làm cho nó khó đọc hơn đối với người mới học C++.
+
+> Sử dụng dấu hai chấm (:) trong vòng lặp for:
+- Điểm mạnh:
+
+    - Ngắn gọn và dễ đọc: Cú pháp đơn giản hơn và dễ hiểu hơn, đặc biệt là đối với những người mới học C++.
+  
+    - Phù hợp cho việc lặp qua các phần tử: Đối với các trường hợp đơn giản như việc lặp qua các phần tử của một danh sách mà không cần thực hiện các thao tác phức tạp khác, cú pháp này rất tiện lợi.
+
+- Điểm yếu:
+
+  - Hạn chế về linh hoạt: Không thể thực hiện các thao tác phức tạp như chèn hoặc xóa phần tử trong quá trình lặp.
+  
+  - Tùy thuộc vào yêu cầu cụ thể của bạn và sự phức tạp của công việc, bạn có thể chọn phương pháp phù hợp. Đối với các trường hợp đơn giản và khi bạn muốn mã nguồn ngắn gọn và dễ đọc, việc sử dụng dấu hai chấm (:) trong vòng lặp for có thể là lựa chọn tốt. Tuy nhiên, nếu bạn cần linh hoạt và có nhiều yêu cầu phức tạp hơn về xử lý danh sách, việc sử dụng iterator có thể là lựa chọn tốt hơn.
+
+
+
+ 
