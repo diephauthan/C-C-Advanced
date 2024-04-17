@@ -1107,3 +1107,104 @@ Khi gọi phương thức từ một đối tượng của lớp con, triển kh
 Overriding là một cách mạnh mẽ để tùy chỉnh và mở rộng hành vi của lớp cha trong OOP, đồng thời duy trì sự linh hoạt và tái sử dụng mã.
 
 **Polymorphism:**
+```
+//OVERLOADING 
+// #include<iostream>
+// #include<string>
+
+// using namespace std;
+
+// int sum(int a, int b)
+// {
+//     return a+b;
+// }
+
+// double sum(double a, double b)
+// {
+//     return a+b;
+// }
+
+// int sum(int a, int b, int c)
+// {
+//     return a+b+c;
+// }
+
+// int main(){
+//     cout<< "sum: "<< sum(2,3) << endl;
+//     cout<< "sum: "<< sum(2.2,3.1) << endl;
+//     cout<< "sum: "<< sum(2,3,4) << endl;
+
+
+//     return 0;
+// }
+
+//OVERRIDING
+#include <iostream>
+#include <string>
+
+
+using namespace std;
+
+class Person
+{
+protected:
+  string Name;
+  int Age;
+  string Home_Address;
+
+public:
+  virtual string test()
+  {
+    return "Hello person";
+  }
+
+  void displayInfo()
+  {
+    cout << test() << endl;
+  }
+  
+};
+
+
+class Student : public Person //class con kế thừa từ class student theo kiểu public
+{
+private:
+  string School_Name;
+  double GPA;
+  int StudentID;
+
+public:
+  string test()
+  {
+    return "Hello student";
+  }
+
+};
+
+
+int main()
+{
+  Person person1;
+  person1.displayInfo();
+  
+
+  cout << "-----------------------" << endl;
+  
+  Student student1;
+  student1.displayInfo();
+
+  
+
+  return 0;
+}
+```
+## **Lesson 15: Standard template library**
+
+Standard Template Library ( STL) là một thư viện trong ngôn ngữ lập trình C++ cung cấp một tập hợp các template classes và functions để thực hiện nhiều loại cấu trúc dữ liệu và các thuật toán phổ biến. STL đã trở thành một phần quan trọng của ngôn ngữ C++ và làm cho việc lập trình trở nên mạnh mẽ, linh hoạt và hiệu quả.
+
+Một số thành phần chính của STL:
+- Container
+- Iterator
+- Algorithms
+- Functor
+
