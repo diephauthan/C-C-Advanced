@@ -1296,7 +1296,7 @@ int main()
     arr2.push_front(100);
 
     list<int>::iterator it = arr2.begin();
-    advance(it, 0); // Di chuyển iterator đến vị trí thứ 2
+    advance(it, 2); // Di chuyển iterator đến vị trí thứ 2
     arr2.insert(it, 99);
     // SỬ DỤNG ITERATOR TRONG VÒNG LẶP FOR
     // list<int>::iterator it;
