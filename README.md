@@ -971,7 +971,7 @@ public:
     }
 };
 
-Student::Student(string name)
+Student::Student(string name) //Constructor Student cũng có thể viết là Student(string name)
 {
     Name = name;
     static int id = 1000;
