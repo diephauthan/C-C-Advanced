@@ -1,5 +1,6 @@
 # Advanced C/C++
 ## **Lesson 2: Stdarg - Assert**
+<details>
 **Thư viện Stdarg:** được dùng để viết một hàm mà số lượng đối số có thể biến đổi (variable arguments). Trong hàm sum dưới đây
 ```c
 int sum(int a, int b){
@@ -58,8 +59,10 @@ int main() {
 }
 ```
 ví dụ trên sẽ báo lỗi vì x = 5 không thỏa điều kiện của assert
+</details>
 
 ## **Lesson 3: Pointer**
+<details>
 **Kích thước của con trỏ phụ thuộc vào kiến trúc máy tính và trình biên dịch.**
 ```
 #include <stdio.h>
@@ -70,6 +73,23 @@ int main() {
     return 0;
 }
 ```
+**Pointer to const và Const pointer:**
+Trong c, biến Const sẽ có giá trị không đổi trong toàn bộ chương trình, compiler sẽ đánh dấu vùng nhớ của biến const là read only (text segment)
+```c
+const int a = 2020;
+a = 2021; // error do biến a là const
+```
+Nhưng khi ta khởi tạo con trỏ để thay đổi giá trị a thì compiler chỉ warning. Để ngăn chặn việc này, ta thêm const phía trước data type khi khai báo ptr 
+```c
+const int a = 2020;
+int *ptr = &a;
+*ptr = 2021; // compiler chỉ báo warning
+//thêm const vào ptr để không dùng ptr thay đổi giá trị của a
+const int a = 2020;
+const int *ptr = &a;
+*ptr = 2021; // compiler báo lỗi
+```
+**LUÔN DÙNG PTR TO CONST KHI TRỎ ĐẾN BIẾN CONST**
 **Function Pointer:** là một loại con trỏ trong ngôn ngữ lập trình C và C++. Nó tham chiếu đến một hàm thay vì một giá trị dữ liệu như các loại con trỏ khác. Mục đích chính của con trỏ hàm là cho phép chương trình chọn hàm để thực thi tại thời điểm chạy.
 
 Cụ thể, khi ta khai báo một con trỏ hàm, ta sẽ cần chỉ định kiểu dữ liệu của hàm mà con trỏ đó sẽ tham chiếu đến, bao gồm kiểu trả về và các tham số của hàm. Sau đó, ta có thể gán con trỏ hàm này cho một hàm cụ thể. Khi gọi con trỏ hàm, chương trình sẽ thực thi hàm mà con trỏ đang tham chiếu đến.
@@ -176,8 +196,10 @@ Mang sau khi sap xep:
 **Const Pointer and Pointer to Const:**
 **Void Pointer:**
 **Pointer to Pointer:**
+</details>
 
 ## **Lesson 4: Memory Layout**
+<details>
 Memory layout của một chương trình C bao gồm 5 phần:
 
 Text segment  (i.e. instructions)
@@ -307,8 +329,10 @@ Sau khi add trả về giá trị 8 và frame của add được loại bỏ: Gi
 - Saved Previus Frame Pointer trỏ vào vị trí đầu tiên của function foo() tức là kết thúc của function main()
 - Local Variable là các biến local của function
 Lưu ý: Nếu chúng ta sử dụng hết vùng nhớ của Stack thì sẽ có một lỗi rất kinh điển đó là Stack OverFlow xảy ra.
+</details>
 
 ## **Lesson 5: Storage Classes Extern - Static - Volatile - Register**
+<details>
 **Extern:** Mục đích của `extern` là để báo cho trình biên dịch biết rằng biến hoặc hàm đó sẽ được định nghĩa ở một nơi khác trong chương trình hoặc trong các file nguồn khác. Điều này cho phép các file nguồn khác nhau trong cùng một chương trình chia sẻ và sử dụng các biến và hàm mà không cần phải định nghĩa lại chúng.
 - Ví dụ
 
@@ -417,12 +441,14 @@ Global Var at end: 20
 
 - Static global variables:
 Khi biến toàn cục được khai báo với từ khóa static thì chỉ có thể truy cập trong tệp nguồn (source file) mà nó được khai báo. Điều này giúp giới hạn phạm vi truy cập của biến, ngăn chặn các tệp nguồn khác từ việc trực tiếp truy cập hoặc thay đổi giá trị của nó. Đây là một phương tiện để ẩn thông tin và giảm sự phụ thuộc giữa các phần khác nhau của chương trình. Do được khai báo với static, giá trị của biến sẽ được khởi tạo một lần duy nhất và giữ nguyên giá trị giữa các lần gọi hàm hoặc thậm chí giữa các lần chạy chương trình khác nhau, nếu biến được khởi tạo với một giá trị cụ thể trong mã. Các biến toàn cục static được khởi tạo tự động với giá trị mặc định là 0 (đối với các kiểu số), NULL (đối với con trỏ), hoặc {0} (đối với các kiểu dữ liệu tổng hợp như mảng hoặc struct). Cũng có thể khởi tạo chúng một cách rõ ràng với giá trị khác khi khai báo.
+</details>
 
 ## **Lesson 6: Go to -Setjmp.h**
 
 ## **Lesson 7: Bit mask**
 
 ## **Lesson 8: Struct - Union**
+<details>
 **Struct:** là một cấu trúc dữ liệu để tạo ra một kiểu dữ liệu mới bằng cách kết hợp nhiều kiểu dữ liệu khác lại với nhau. Cấu trúc này cho phép bạn tự định nghĩa các kiểu dữ liệu phức tạp bằng cách kết hợp các kiểu dữ liệu cơ bản của C như int, float, char, v.v.
 Một struct trong C có thể bao gồm một hoặc nhiều biến thành viên (member variables), mỗi biến thành viên có thể là bất kỳ kiểu dữ liệu nào trong C. Điều này cho phép bạn tạo ra các đối tượng dữ liệu phức tạp hơn so với việc sử dụng các kiểu dữ liệu cơ bản.
 - Ví dụ:
@@ -491,10 +517,13 @@ arr3[3] = 12 bytes
 => kích thước uni = 20 bytes
  */
 ```
+</details>
+
 ## **Lesson 9: JSON**
 **JSON:** 
-## **Lesson 10: Linked list**
 
+## **Lesson 10: Linked list**
+<details>
 Linked list bao gồm một chuỗi các "nút" (nodes), mỗi nút chứa một giá trị dữ liệu và một con trỏ (pointer) đến nút tiếp theo trong chuỗi.
 
 <img src="https://images.viblo.asia/e531ddbd-d7e8-433a-8b89-84ad477e22d5.png">
@@ -531,8 +560,10 @@ node *createnode(int value){
     return newnode; //trả về con trỏ trỏ đến node mới
 }
 ```
+</details>
 
 ## **Lesson: Stack - Queue**
+<details>
 **Stack:** là một data structure giúp lưu trữ, quản lý dữ liệu theo cơ chế LIFO (Last In, First Out). Stack cho phép hai thao tác cơ bản: **push (đẩy một phần tử vào ngăn xếp)** và **pop (lấy một phần tử ra khỏi ngăn xếp)**. Ngoài ra, thường còn có các thao tác khác như **peek (xem giá trị phần tử đầu ngăn xếp mà không loại bỏ nó)** và **isEmpty (kiểm tra xem ngăn xếp có trống không)**.
 <img src="https://www.tutorialspoint.com/data_structures_algorithms/images/stack_representation.jpg">
 - Ví dụ:
@@ -738,7 +769,10 @@ int main(){
     return 0;
 }
 ```
+</details>
+
 ## **Lesson: Binary search - File operations - Code standards**
+<details>
 **Binary search:** là một thuật toán tìm kiếm giá trị trên một mảng đã được sắp xếp hoặc một dãy có thứ tự. tiếp theo so sánh giá trị cần tìm (gọi là **"key"**) với giá trị ở giữa của mảng. Dựa vào kết quả của phép so sánh, có thể loại bỏ một nửa của mảng khỏi tìm kiếm vì giá trị cần tìm không thể nằm ở đó.
 
 **Thuật toán làm việc theo các bước sau:**
@@ -780,7 +814,10 @@ int binarysearch(int *arr, int left, int right, int x){ //truyền vào mảng, 
     return -1; //vì vị trí trong mảng k có -1, khi return về -1 có nghĩa là k tìm thấy giá trị trong mảng
 }
 ```
+</details>
+
 ## **Lesson 13: Class**
+<details>
 **class:** là một cấu trúc dữ liệu mà user tự định nghĩa, trong đó user có thể đóng gói dữ liệu và các hàm thành viên (member functions) liên quan lại với nhau. Một class là một kiểu dữ liệu tùy chỉnh, cho phép tạo ra các đối tượng (objects) dựa trên nó.
 
 Class cung cấp một cách để tổ chức mã nguồn của bạn theo các đối tượng có liên quan và cung cấp một cách tiếp cận để làm việc với dữ liệu và hành vi của các đối tượng đó. Class thường được sử dụng trong lập trình hướng đối tượng (OOP) để tạo ra các đối tượng có tính tổ chức và tái sử dụng cao.
@@ -920,9 +957,10 @@ int main() {
     return 0;
 }
 ```
+<details>
 
 ## **Lesson 14: OOPs Concepts**
-
+<details>
 **Encapsulation:** là một nguyên tắc trong lập trình hướng đối tượng (OOP) mà mục tiêu là che dấu các chi tiết bên trong một đối tượng và chỉ cho phép truy cập thông qua các phương thức công khai (public methods) hoặc giao diện công khai. Điều này giúp bảo vệ dữ liệu và chức năng của đối tượng khỏi sự can thiệp bên ngoài và tạo ra một giao diện dễ sử dụng.
 Các yếu tố chính của Encapsulation bao gồm:
 
@@ -1201,8 +1239,10 @@ int main()
   return 0;
 }
 ```
-## **Lesson 15: Standard template library**
+</details>
 
+## **Lesson 15: Standard template library**
+<details>
 Standard Template Library ( STL) là một thư viện trong ngôn ngữ lập trình C++ cung cấp một tập hợp các template classes và functions để thực hiện nhiều loại cấu trúc dữ liệu và các thuật toán phổ biến. STL đã trở thành một phần quan trọng của ngôn ngữ C++ và làm cho việc lập trình trở nên mạnh mẽ, linh hoạt và hiệu quả.
 
 Một số thành phần chính của STL:
@@ -1342,6 +1382,7 @@ Việc sử dụng iterator trong vòng lặp for để duyệt qua các phần 
   - Hạn chế về linh hoạt: Không thể thực hiện các thao tác phức tạp như chèn hoặc xóa phần tử trong quá trình lặp.
   
   - Tùy thuộc vào yêu cầu cụ thể của bạn và sự phức tạp của công việc, bạn có thể chọn phương pháp phù hợp. Đối với các trường hợp đơn giản và khi bạn muốn mã nguồn ngắn gọn và dễ đọc, việc sử dụng dấu hai chấm (:) trong vòng lặp for có thể là lựa chọn tốt. Tuy nhiên, nếu bạn cần linh hoạt và có nhiều yêu cầu phức tạp hơn về xử lý danh sách, việc sử dụng iterator có thể là lựa chọn tốt hơn.
+</details> 
 
 
 
