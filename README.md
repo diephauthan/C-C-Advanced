@@ -980,7 +980,7 @@ int main() {
     return 0;
 }
 ```
-<details>
+</details>
 
 ## **Lesson 14: OOPs Concepts**
 <details>
