@@ -238,7 +238,7 @@ Stack
 
 <img src="https://media.geeksforgeeks.org/wp-content/uploads/memoryLayoutC.jpg">
 
-**Text Segment (Code Segment):** Là khu vực bộ nhớ chứa mã máy của chương trình sau khi được biên dịch. Đây là phần chứa các lệnh và hàm thực thi của chương trình. Khu vực này thường được đánh dấu là chỉ đọc để ngăn chặn việc sửa đổi mã thực thi.
+**Text Segment (Code Segment):** Là khu vực bộ nhớ chứa **mã máy** của chương trình sau khi được biên dịch, **con trỏ kiểu char,biến hằng số**. Đây là phần chứa các lệnh và hàm thực thi của chương trình. Khu vực này thường được đánh dấu là chỉ đọc để ngăn chặn việc sửa đổi mã thực thi.
 
 **Initialized Data Segment (DS):** chứa **global variables** và **static variables** **đã được khởi tạo với giá trị khác 0**.
 các biến này có thể đọc và ghi, các biến ở DS chỉ được thu hồi khi chương trình kết thúc (thoát ra khỏi hàm main, với MCU thì khi bị ngắt nguồn)
